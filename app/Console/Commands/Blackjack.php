@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Entity\CardDeck;
 use Illuminate\Console\Command;
 
 class Blackjack extends Command
@@ -37,7 +38,7 @@ class Blackjack extends Command
      */
     public function handle()
     {
-        echo 1;
-        return 0;
+        $card = new CardDeck();
+      $card->deck();
     }
 }

@@ -5,18 +5,51 @@ namespace App\Entity;
 
 class CardDeck
 {
-    const PATTERN = ['spade', 'heart', 'diamond', 'clover'];
-    const NUMBER = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13'];
+    const PATTERN = ['SPADE', 'HEART', 'DIAMOND', 'CLOVER'];
+    const NUMBER = 13;
 
-    public static function deck() {
+    public function deck()
+    {
+        $deck = $this->generateCards();
+        shuffle($deck);
+        foreach ($deck as $card) {
+            \Log::debug(var_export($card, true));
+        }
+    }
+
+    private function generateCards(): array
+    {
+        $cards = array();
+
         foreach (self::PATTERN as $pattern) {
-            foreach (Self::NUMBER as $number) {
-                $deck[] = new static($pattern, $number);
+            for($i = 1; $i<=self::NUMBER; $i++) {
+                $card = new Card($pattern,$i);
+                $denomination = $this->numberToDenomination($i);
+                $card->setNumber($denomination);
+                $card->setPattern($pattern);
+                $cards[] = $card;
             }
         }
-
-        shuffle($deck);
-
-        return $deck;
+        return $cards;
     }
+
+
+    private function numberToDenomination(int $number):string
+    {
+        $denomination = "";
+
+        if($number == 1) {
+            $denomination = "A";
+        } else if($number == 11) {
+            $denomination = "J";
+        } else if($number == 12) {
+            $denomination = "Q";
+        } else if($number == 13) {
+            $denomination = "K";
+        } else {
+            $denomination = $number;
+        }
+        return $denomination;
+    }
+
 }

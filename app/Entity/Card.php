@@ -7,6 +7,10 @@ class Card
     private $pattern;
     private $number;
 
+    public function __construct($pattern, $number)
+    {
+    }
+
     /**
      * @return mixed
      */
