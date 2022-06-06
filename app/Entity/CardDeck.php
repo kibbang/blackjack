@@ -3,18 +3,20 @@
 namespace App\Entity;
 
 
-class CardDeck
+class CardDeck extends Card
 {
-    const PATTERN = ['SPADE', 'HEART', 'DIAMOND', 'CLOVER'];
-    const NUMBER = 13;
+    public const PATTERN = ['SPADE', 'HEART', 'DIAMOND', 'CLOVER'];
+    public const NUMBER = 13;
 
-    public function deck()
+    public function deck(): array
     {
+        $shuffledDeck = array();
         $deck = $this->generateCards();
         shuffle($deck);
         foreach ($deck as $card) {
-            \Log::debug(var_export($card, true));
+            $shuffledDeck[] = $card;
         }
+        return $shuffledDeck;
     }
 
     private function generateCards(): array
@@ -23,7 +25,7 @@ class CardDeck
 
         foreach (self::PATTERN as $pattern) {
             for($i = 1; $i<=self::NUMBER; $i++) {
-                $card = new Card($pattern,$i);
+                $card = new Card();
                 $denomination = $this->numberToDenomination($i);
                 $card->setNumber($denomination);
                 $card->setPattern($pattern);
@@ -36,8 +38,6 @@ class CardDeck
 
     private function numberToDenomination(int $number):string
     {
-        $denomination = "";
-
         if($number == 1) {
             $denomination = "A";
         } else if($number == 11) {
@@ -50,6 +50,14 @@ class CardDeck
             $denomination = $number;
         }
         return $denomination;
+    }
+
+    public function drawCard()
+    {
+        $deck = $this->deck();
+        \Log::debug("CardDeck");
+        \Log::debug(var_export(array_pop($deck), true));
+        return array_pop($deck);
     }
 
 }

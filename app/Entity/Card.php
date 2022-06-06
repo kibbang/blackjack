@@ -4,12 +4,8 @@ namespace App\Entity;
 
 class Card
 {
-    private $pattern;
-    private $number;
-
-    public function __construct($pattern, $number)
-    {
-    }
+    protected $pattern;
+    protected $number;
 
     /**
      * @return mixed
@@ -42,4 +38,10 @@ class Card
     {
         $this->pattern = $pattern;
     }
+
+    public function toString(): string
+    {
+        return "card: { ".$this->pattern." ".$this->number." }";
+    }
 }
+

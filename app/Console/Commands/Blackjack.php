@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Entity\CardDeck;
+use App\Entity\Dealer;
+use App\Entity\Gamer;
+use App\Entity\Rule;
+use App\Entity\Game;
 use Illuminate\Console\Command;
 
 class Blackjack extends Command
@@ -37,8 +41,8 @@ class Blackjack extends Command
      * @return int
      */
     public function handle()
-    {
-        $card = new CardDeck();
-      $card->deck();
-    }
+   {
+        $game = new Game();
+        echo $game->game();
+   }
 }
