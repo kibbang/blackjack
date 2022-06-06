@@ -2,8 +2,6 @@
 namespace App\Domain;
 use App\Entity\Card;
 
-
-
 interface Player
 {
     public function receivedCards(Card $card);

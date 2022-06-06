@@ -6,6 +6,14 @@ class Card
 {
     protected $pattern;
     protected $number;
+    protected $point;
+//
+//    public function __construct(string $pattern, string $number, int $point)
+//    {
+//        $this->pattern = $pattern;
+//        $this->number = $number;
+//        $this->point = $point;
+//    }
 
     /**
      * @return mixed
@@ -42,6 +50,14 @@ class Card
     public function toString(): string
     {
         return "card: { ".$this->pattern." ".$this->number." }";
+    }
+
+    /**
+     * @return int
+     */
+    public function getPoint(): int
+    {
+        return $this->point;
     }
 }
 

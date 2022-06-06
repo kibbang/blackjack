@@ -35,6 +35,15 @@ class CardDeck extends Card
         return $cards;
     }
 
+    private function numberToPoint(int $number): int
+    {
+        if ($number >= 11) {
+            return 10;
+        } else {
+            return $number;
+        }
+    }
+
 
     private function numberToDenomination(int $number):string
     {
