@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 use App\Domain\Player;
-
+use Illuminate\Console\Concerns\InteractsWithIO;
 
 class Game
-
 {
+    use InteractsWithIO;
     private const INIT_RECEIVE_CARD_COUNT = 2;
     private const STOP_RECEIVE_CARD = "0";
 
@@ -26,7 +26,7 @@ class Game
 
     public function firstPhase(CardDeck $cardDeck, $gamer, $dealer)
     {
-        echo "=======================first phase 시작=============================\n";
+        echo "=======================처음 카드 2장을 드로우 합니다.=============================\n";
         echo "=====================카드 목록=======================\n";
         for ($i = 0; $i < self::INIT_RECEIVE_CARD_COUNT; $i++)
         {

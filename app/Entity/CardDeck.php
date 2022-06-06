@@ -27,8 +27,10 @@ class CardDeck extends Card
             for($i = 1; $i<=self::NUMBER; $i++) {
                 $card = new Card();
                 $denomination = $this->numberToDenomination($i);
+                $point = $this->numberToPoint($i);
                 $card->setNumber($denomination);
                 $card->setPattern($pattern);
+                $card->setPoint($point);
                 $cards[] = $card;
             }
         }

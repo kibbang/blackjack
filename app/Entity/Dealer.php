@@ -72,7 +72,7 @@ class Dealer implements Player
     {
         $sum = 0;
         foreach ($this->cards as $card) {
-            $sum += $this->cards->getPoint();
+            $sum += $card->getPoint();
         }
         return $sum;
     }

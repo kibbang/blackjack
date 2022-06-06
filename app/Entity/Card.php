@@ -4,10 +4,10 @@ namespace App\Entity;
 
 class Card
 {
-    protected $pattern;
-    protected $number;
-    protected $point;
-//
+    private $pattern;
+    private $number;
+    private $point;
+
 //    public function __construct(string $pattern, string $number, int $point)
 //    {
 //        $this->pattern = $pattern;
@@ -29,6 +29,15 @@ class Card
     public function getPattern()
     {
         return $this->pattern;
+    }
+
+
+    /**
+     * @param mixed $point
+     */
+    public function setPoint($point): void
+    {
+        $this->point = $point;
     }
 
     /**
