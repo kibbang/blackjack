@@ -21,7 +21,7 @@ class Dealer implements Player
             $this->cards[] = $card;
             $this->showCards();
         } else {
-            echo "카드의 총 합이 17이상입니다. 더이상 카드를 받을 수 없습니다.";
+            echo "카드의 총 합이 17이상입니다. 더이상 카드를 받을 수 없습니다.\n";
         }
     }
 
@@ -44,7 +44,7 @@ class Dealer implements Player
         return $this->cards;
     }
 
-    private function setTurn($turn): bool
+    private function setTurn($turn)
     {
         $this->turn = $turn;
     }

@@ -51,7 +51,7 @@ class Gamer implements Player
     /**
      * @param mixed $turn
      */
-    private function setTurn($turn): bool
+    private function setTurn($turn)
     {
         $this->turn = $turn;
     }

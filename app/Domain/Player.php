@@ -12,7 +12,7 @@ interface Player
 
     public function getName(): String;
 
-    public function isTurn(): Bool;
+    public function isTurn(): bool;
 
     public function turnOn(): void;
 
