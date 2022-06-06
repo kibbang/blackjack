@@ -66,8 +66,6 @@ class CardDeck extends Card
     public function drawCard()
     {
         $deck = $this->deck();
-        \Log::debug("CardDeck");
-        \Log::debug(var_export(array_pop($deck), true));
         return array_pop($deck);
     }
 
