@@ -1,66 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 블랙잭 과제
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### 개요
 
-## About Laravel
+객체지향 프로그래밍(Object-Oriented-Programing)에 대해 공부하기 위해 받은 과제
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 실행 방법
+    php artisan blackjack
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 블랙잭의 규칙
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. 딜러, 게이머 1대1 승부 (딜러 1에 게이머 다수도 있지만 이번 과제에서는 스펙아웃)
+2. 카드패는 총 52장(조커 제외, 4문양 패턴에 1(A)~K)
+3. 카드패의 Ace카드는 본래 플레이어의 상황 유불리에 따라 1 OR 11로 계산되지만 이번 과제에서는 1로 계산
+4. 2~10은 숫자로 점수를 계산 Jack, Queen, King 카드는 10으로 계산
+5. 처음 시작 할 때 2장의 카드 드로우
+6. 게이머는 원하는 만큼 카드를 받을 수 있다.
+7. 딜러는 카드가 17점 이상이면 카드를 뽑을 수 없다.
+8. 처음 턴에 플레이어(딜러, 게이머) 양쪽 모두 추가 하지 않을 경우 21에 가까운 쪽이 이긴다.
+9. 21을 초과하면 Bust룰에 의해 패배한다. 
 
-## Learning Laravel
+### 설계
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1차 -> Card, CardDeck, Rule, User, Dealer 의 5개 객체를 염두
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2차 -> User, Dealer는 게임을 진행하는데 있어 비슷한 패턴, 즉 같은 코드가 쓰일 수 있다. 하여 공통된 부분을 묶어
+Player라는 인터페이스로 뽑아냄
 
-## Laravel Sponsors
+### 각각 객체의 역할
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Card : 4가지 문양패턴, A~K까지의 숫자를 가지고 있다.
+#### Deck: 52장의 카드를 섞고 배부한다.
+#### Gamer: 카드를 받고 오픈, 소유한다.
+#### Dealer: Gamer와 동일하지만 추가적으로 규칙 7 번이 적용된다.
+#### Rule: 각자 마지막 턴이 끝나면 점수 계산 후 게임의 승패를 결정한다.
 
-### Premium Partners
+### 미구현 사항
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### 첫 패는 hidden으로 보여주지 않는 것 (룰을 자세히 읽지 못해 간과한 부분)
+#### draw (이건 왜 삽질하고있는지 모르겠다..)
+#### TestCode (습관들여야한다.) -> 테스트코드에서 OK 후 본 코드로 옮기는것!
+#### Debug 셋팅... (XDEBUG 왜 안깔리냐.... php 설치경로랑 다시 봐야할듯)
+#### 베팅에 대한 부분
 
-## Contributing
+### 후기
+객체지향 프로그래밍에 대한 엄청난 '무지'로 인해 처음부터 좀 난항이긴 했지만
+공부를 할수록 심오한거 같다.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+매일매일 조금씩이라도 공부하고 코드작성도 하려고 노력했지만 
 
-## Code of Conduct
+미구현 사항도 많고 깔끔하지 못한 부분 또한 많다.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+꾸준히 공부하면서 리펙토링 및 세부 블랙잭 규칙과 베팅도 구현해 봐야겠다.
 
-## Security Vulnerabilities
+또한 CleanCode에 대해서도 계속 고민해봐야겠다.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+메인 주제는 객체지향이였지만 진행하면서 여러가지를 참 많이 느낀것 같다.
 
-## License
+### 결론: 공부하자
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# blackjack
-# blackjack
+
