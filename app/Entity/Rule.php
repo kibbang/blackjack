@@ -11,13 +11,12 @@ class Rule
 
         foreach ($player as $players) {
             $pointSum = $this->getPointSum($players->openCards());
-
-            if ($pointSum > $highScore) {
+            $isBust = $this->isBust($pointSum);
+            if ($pointSum > $highScore && !$isBust) {
                 $highScorePlayer = $players;
                 $highScore = $pointSum;
             }
         }
-
         return $highScorePlayer;
     }
 
@@ -31,5 +30,14 @@ class Rule
         }
 
         return $sum;
+    }
+
+    private function isBust($sum): bool
+    {
+        if ($sum > 21) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

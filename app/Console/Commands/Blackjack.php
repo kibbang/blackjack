@@ -106,7 +106,7 @@ class Blackjack extends Command
     private function firstPhase($cardDeck, $players)
     {
 //        echo "=======================처음 카드 2장을 드로우 합니다.=============================\n";
-        $this->info("게임에 참가하는 인원 별로 최초 2장을 뽑습니다.");
+        $this->info("최초 2장을 뽑습니다.");
         $this->info("==============================================");
         for ($i = 0; $i < self::INIT_RECEIVE_CARD_COUNT; $i++)
         {
