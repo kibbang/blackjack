@@ -69,4 +69,14 @@ class CardDeck extends Card
         return array_pop($deck);
     }
 
+    public function showAllCard()
+    {
+        $deck = $this->deck();
+        foreach ($deck as $card)
+        {
+            echo $card->toString();
+            echo "\n";
+        }
+    }
+
 }

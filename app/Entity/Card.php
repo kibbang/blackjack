@@ -8,12 +8,6 @@ class Card
     private $number;
     private $point;
 
-//    public function __construct(string $pattern, string $number, int $point)
-//    {
-//        $this->pattern = $pattern;
-//        $this->number = $number;
-//        $this->point = $point;
-//    }
 
     /**
      * @return mixed

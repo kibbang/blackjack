@@ -67,7 +67,12 @@ class Blackjack extends Command
         $endGamePlayers = $this->playPhase($cardDeck, $firstAfterPlayers);
 
         $winner = $rule->getWinner($endGamePlayers);
-        $this->info("승자는".$winner->getName());
+        if($winner == null ){
+            $this->info("무승부입니다.");
+        } else {
+            $this->info("승자는".$winner->getName());
+        }
+//        $this->info("승자는".$winner->getName());
     }
 
     private function playPhase($cardDeck, $players)
