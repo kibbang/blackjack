@@ -4,6 +4,8 @@ namespace App\Entity;
 
 class Rule
 {
+    private const MAX_POINT = 21;
+
     public function getWinner($player)
     {
         $highScorePlayer = null;
@@ -34,7 +36,7 @@ class Rule
 
     private function isBust($sum): bool
     {
-        if ($sum > 21) {
+        if ($sum > self::MAX_POINT) {
             return true;
         } else {
             return false;
